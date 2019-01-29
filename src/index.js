@@ -4,8 +4,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
-import state from "./Redux/state";
+import store from "./Redux/store";
 
+let state = store.state;
 
 ReactDOM.render(
     <BrowserRouter>
