@@ -6,7 +6,7 @@ import CatalogPage from "./ui/CatalogPage/CatalogPage";
 import {NavLink, Route} from "react-router-dom";
 
 
-const App = ({addCommentOnPage, state: {homePage, catalogPage, productPage}}) => {
+const App = ({addCurrentMessageOnPage, addCommentOnPage, state: {homePage, catalogPage, productPage}}) => {
     // debugger
 
     return (
@@ -26,9 +26,9 @@ const App = ({addCommentOnPage, state: {homePage, catalogPage, productPage}}) =>
 
             <Route exact path='/' render={() => <HomePage homePage={homePage}/>}/>
             <Route path='/catalog' render={() => <CatalogPage catalogPage={catalogPage}/>}/>
-            <Route path='/product' render={() => <ProductPage
-                productPage={productPage}
-                addCommentOnPage={addCommentOnPage}/>}/>
+            <Route path='/product' render={() => <ProductPage   productPage={productPage}
+                                                                addCommentOnPage={addCommentOnPage}
+                                                                addCurrentMessageOnPage={addCurrentMessageOnPage}/>}/>
         </div>
     );
 };

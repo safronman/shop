@@ -1,20 +1,21 @@
 import React from 'react';
-import Comment from "./Comment";
 import styles from './../../App.module.css';
 
-const ProductPage = ({addCommentOnPage, productPage: {product, comments}}) => {
+const ProductPage = ({addCurrentMessageOnPage, addCommentOnPage, productPage: {product, comments, currentMessage}}) => {
     // debugger
 
-    // Создание реферальной ссылки
-    let textAreaElement = React.createRef();
-
-    let commentArray = comments.map((item, id) => {
-        return <div key={id}>{item}</div>;
+    let commentsArray = comments.map((item, id) => {
+        return (
+            <div key={id}>{item}</div>
+        );
     });
 
+    let onTextareaValueChange = (e) => {
+        addCurrentMessageOnPage(e.currentTarget.value);
+    };
+
     let onAddCommentButtonClick = () => {
-        addCommentOnPage(textAreaElement.current.value);
-        textAreaElement.current.value = '';
+        addCommentOnPage(currentMessage);
     };
 
     return <div>
@@ -37,10 +38,10 @@ const ProductPage = ({addCommentOnPage, productPage: {product, comments}}) => {
             <div>
                 <h3>Отзывы:</h3>
             </div>
-            <div> {commentArray} </div>
+            <div> {commentsArray} </div>
         </div>
         <div>
-            <textarea ref={textAreaElement} placeholder="add text" ></textarea>
+            <textarea onChange={onTextareaValueChange} value={currentMessage} placeholder="add text"></textarea>
             <br/>
             <button onClick={onAddCommentButtonClick}>Add</button>
         </div>

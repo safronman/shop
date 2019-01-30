@@ -4,19 +4,26 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
-import store, {addComment} from "./Redux/store";
+import store, {addCurrentMessageInState, addMessageInState} from "./Redux/store";
 
 let state = store.state;
 
-let addCommentOnPage = (comment)=> {
-    addComment(comment);
+let addCurrentMessageOnPage = (message) => {
+    addCurrentMessageInState(message);
+    renderPage();
+};
+
+let addCommentOnPage = (message) => {
+    addMessageInState(message);
     renderPage();
 };
 
 let renderPage = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} addCommentOnPage={addCommentOnPage}/>
+            <App state={state}
+                 addCommentOnPage={addCommentOnPage}
+                 addCurrentMessageOnPage={addCurrentMessageOnPage}/>
         </BrowserRouter>,
         document.getElementById('root'));
 };

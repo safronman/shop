@@ -62,13 +62,19 @@ let store = {
                 desc: "Android, экран 5.8\" AMOLED (1440x2960), Exynos 8895, ОЗУ 4 ГБ, флэш-память 64 ГБ, карты\n" +
                     "памяти, камера 12 Мп, аккумулятор 3000 мАч, 2 SIM, цвет черный"
             },
-            comments: ['one comment', 'two comment', 'three comment']
+            comments: ['one comment', 'two comment', 'three comment'],
+            currentMessage: ''
         }
     }
 };
 
-export const addComment = (text)=> {
-    store.state.productPage.comments.push(text);
+export const addCurrentMessageInState = (message) => {
+    store.state.productPage.currentMessage = message;
+};
+
+export const addMessageInState = (message) => {
+    store.state.productPage.comments.push(message);
+    store.state.productPage.currentMessage = "";
 };
 
 export default store;
