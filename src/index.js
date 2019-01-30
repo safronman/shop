@@ -4,15 +4,25 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
-import store from "./Redux/store";
+import store, {addComment} from "./Redux/store";
 
 let state = store.state;
 
-ReactDOM.render(
-    <BrowserRouter>
-        <App state={state}/>
-    </BrowserRouter>,
-    document.getElementById('root'));
+let addCommentOnPage = (comment)=> {
+    addComment(comment);
+    renderPage();
+};
+
+let renderPage = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={state} addCommentOnPage={addCommentOnPage}/>
+        </BrowserRouter>,
+        document.getElementById('root'));
+};
+
+renderPage();
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
