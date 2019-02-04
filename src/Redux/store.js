@@ -53,7 +53,12 @@ let store = {
                     title: 'Iphone',
                     shortDescription: 'Apple iOS, экран 5.8" AMOLED (1125x2436), Apple A11 Bionic, ОЗУ 3 ГБ, флэш-память 64 ГБ, камера 12 Мп, аккумулятор 2716 мАч, 1 SIM, цвет темно-серый'
                 }
-            ]
+            ],
+            currentProduct: {
+                img: '',
+                title: '',
+                shortDescription: ''
+            }
         },
         productPage: {
             product: {
@@ -75,6 +80,35 @@ export const addCurrentMessageInState = (message) => {
 export const addMessageInState = (message) => {
     store.state.productPage.comments.push(message);
     store.state.productPage.currentMessage = "";
+};
+
+
+
+// add product on catalog page
+export const addCurrentImgInState = (img) => {
+    store.state.catalogPage.currentProduct.img = img;
+};
+
+
+export const addCurrentTitleInState = (title) => {
+    store.state.catalogPage.currentProduct.title = title;
+};
+
+export const addCurrentDescInState = (text) => {
+    store.state.catalogPage.currentProduct.shortDescription = text;
+};
+
+export const addProductInState = (img, title, desc) => {
+    let newProduct = {
+        id: 5,
+        img: img,
+        title: title,
+        shortDescription: desc
+    };
+    store.state.catalogPage.products.push(newProduct);
+    store.state.catalogPage.currentProduct.title = "";
+    store.state.catalogPage.currentProduct.shortDescription = "";
+    store.state.catalogPage.currentProduct.img = "";
 };
 
 export default store;

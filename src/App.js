@@ -6,7 +6,7 @@ import CatalogPage from "./ui/CatalogPage/CatalogPage";
 import {NavLink, Route} from "react-router-dom";
 
 
-const App = ({addCurrentMessageOnPage, addCommentOnPage, state: {homePage, catalogPage, productPage}}) => {
+const App = ({addCurrentImgOnPage, addCurrentDescOnPage, addCurrentTitleOnPage, addCurrentMessageOnPage,  addProductOnPage, addCommentOnPage, state: {homePage, catalogPage, productPage}}) => {
     // debugger
 
     return (
@@ -25,10 +25,14 @@ const App = ({addCurrentMessageOnPage, addCommentOnPage, state: {homePage, catal
             </div>
 
             <Route exact path='/' render={() => <HomePage homePage={homePage}/>}/>
-            <Route path='/catalog' render={() => <CatalogPage catalogPage={catalogPage}/>}/>
-            <Route path='/product' render={() => <ProductPage   productPage={productPage}
-                                                                addCommentOnPage={addCommentOnPage}
-                                                                addCurrentMessageOnPage={addCurrentMessageOnPage}/>}/>
+            <Route path='/catalog' render={() => <CatalogPage catalogPage={catalogPage}
+                                                              addCurrentTitleOnPage={addCurrentTitleOnPage}
+                                                              addCurrentDescOnPage={addCurrentDescOnPage}
+                                                              addCurrentImgOnPage={addCurrentImgOnPage}
+                                                              addProductOnPage={ addProductOnPage}/>}/>
+            <Route path='/product' render={() => <ProductPage productPage={productPage}
+                                                              addCommentOnPage={addCommentOnPage}
+                                                              addCurrentMessageOnPage={addCurrentMessageOnPage}/>}/>
         </div>
     );
 };
