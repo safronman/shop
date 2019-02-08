@@ -1,5 +1,5 @@
 let store = {
-    state: {
+    _state: {
         homePage: {
             banner: {
                 img: "https://i0.wp.com/9to5google.com/wp-content/uploads/sites/4/2019/02/mainbanner_s9_samuel1.jpg?resize=1500%2C0&quality=82&strip=all&ssl=1\""
@@ -70,45 +70,49 @@ let store = {
             comments: ['one comment', 'two comment', 'three comment'],
             currentMessage: ''
         }
+    },
+    getState() {
+        return this._state;
+    },
+    _callback() {
+    },
+    subscribe(func) {
+        this._callback = func;
+    },
+    addCurrentMessageToProductPage(message) {
+        this._state.productPage.currentMessage = message;
+        this._callback();
+    },
+    addCommentToProductPage(message) {
+        this._state.productPage.comments.push(message);
+        this._state.productPage.currentMessage = "";
+        this._callback();
+    },
+    addCurrentImgOnCatalogPage(img) {
+        this._state.catalogPage.currentProduct.img = img;
+        this._callback();
+    },
+    addCurrentTitleOnCatalogPage(title) {
+        this._state.catalogPage.currentProduct.title = title;
+        this._callback();
+    },
+    addCurrentDescOnCatalogPage(text) {
+        this._state.catalogPage.currentProduct.shortDescription = text;
+        this._callback();
+    },
+    addProductOnCatalogPage(img, title, desc) {
+        let newProduct = {
+            id: 5,
+            img: img,
+            title: title,
+            shortDescription: desc
+        };
+        this._state.catalogPage.products.push(newProduct);
+        this._state.catalogPage.currentProduct.title = "";
+        this._state.catalogPage.currentProduct.shortDescription = "";
+        this._state.catalogPage.currentProduct.img = "";
+        this._callback();
     }
-};
-
-export const addCurrentMessageInState = (message) => {
-    store.state.productPage.currentMessage = message;
-};
-
-export const addMessageInState = (message) => {
-    store.state.productPage.comments.push(message);
-    store.state.productPage.currentMessage = "";
-};
-
-
-
-// add product on catalog page
-export const addCurrentImgInState = (img) => {
-    store.state.catalogPage.currentProduct.img = img;
-};
-
-
-export const addCurrentTitleInState = (title) => {
-    store.state.catalogPage.currentProduct.title = title;
-};
-
-export const addCurrentDescInState = (text) => {
-    store.state.catalogPage.currentProduct.shortDescription = text;
-};
-
-export const addProductInState = (img, title, desc) => {
-    let newProduct = {
-        id: 5,
-        img: img,
-        title: title,
-        shortDescription: desc
-    };
-    store.state.catalogPage.products.push(newProduct);
-    store.state.catalogPage.currentProduct.title = "";
-    store.state.catalogPage.currentProduct.shortDescription = "";
-    store.state.catalogPage.currentProduct.img = "";
 };
 
 export default store;

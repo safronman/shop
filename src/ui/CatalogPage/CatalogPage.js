@@ -2,24 +2,22 @@ import React from 'react';
 import styles from './Catalog.module.css';
 import {NavLink} from "react-router-dom";
 
-const CatalogPage = ({addCurrentImgOnPage, addCurrentDescOnPage, addCurrentTitleOnPage, addProductOnPage, catalogPage: {products, currentProduct}}) => {
+const CatalogPage = ({catalogPage: {products, currentProduct}, addCurrentTitleOnCatalogPage, addCurrentImgOnCatalogPage, addCurrentDescOnCatalogPage, addProductOnCatalogPage}) => {
     // debugger
-    let addCurrentImgInProduct = (e) => {
-        addCurrentImgOnPage(e.currentTarget.value);
+    let addCurrentTitleInProduct = (e) => {
+        addCurrentTitleOnCatalogPage(e.currentTarget.value);
     };
 
-    let addCurrentTitleInProduct = (e) => {
-        addCurrentTitleOnPage(e.currentTarget.value);
+    let addCurrentImgInProduct = (e) => {
+        addCurrentImgOnCatalogPage(e.currentTarget.value);
     };
 
     let addCurrentDescInProduct = (e) => {
-        addCurrentDescOnPage(e.currentTarget.value);
+        addCurrentDescOnCatalogPage(e.currentTarget.value);
     };
 
-
     let addProduct = () => {
-        // debugger
-        addProductOnPage(currentProduct.img, currentProduct.title, currentProduct.shortDescription);
+        addProductOnCatalogPage(currentProduct.img, currentProduct.title, currentProduct.shortDescription);
     };
 
     return (

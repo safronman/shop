@@ -6,9 +6,8 @@ import CatalogPage from "./ui/CatalogPage/CatalogPage";
 import {NavLink, Route} from "react-router-dom";
 
 
-const App = ({addCurrentImgOnPage, addCurrentDescOnPage, addCurrentTitleOnPage, addCurrentMessageOnPage,  addProductOnPage, addCommentOnPage, state: {homePage, catalogPage, productPage}}) => {
+const App = ({store, state: {homePage, catalogPage, productPage}}) => {
     // debugger
-
     return (
         <div className={styles.App}>
             <div>
@@ -26,13 +25,14 @@ const App = ({addCurrentImgOnPage, addCurrentDescOnPage, addCurrentTitleOnPage, 
 
             <Route exact path='/' render={() => <HomePage homePage={homePage}/>}/>
             <Route path='/catalog' render={() => <CatalogPage catalogPage={catalogPage}
-                                                              addCurrentTitleOnPage={addCurrentTitleOnPage}
-                                                              addCurrentDescOnPage={addCurrentDescOnPage}
-                                                              addCurrentImgOnPage={addCurrentImgOnPage}
-                                                              addProductOnPage={ addProductOnPage}/>}/>
+                                                              addCurrentTitleOnCatalogPage={store.addCurrentTitleOnCatalogPage.bind(store)}
+                                                              addCurrentImgOnCatalogPage={store.addCurrentImgOnCatalogPage.bind(store)}
+                                                              addCurrentDescOnCatalogPage={store.addCurrentDescOnCatalogPage.bind(store)}
+                                                              addProductOnCatalogPage={store.addProductOnCatalogPage.bind(store)}/>}/>
+
             <Route path='/product' render={() => <ProductPage productPage={productPage}
-                                                              addCommentOnPage={addCommentOnPage}
-                                                              addCurrentMessageOnPage={addCurrentMessageOnPage}/>}/>
+                                                              addCurrentMessageToProductPage={store.addCurrentMessageToProductPage.bind(store)}
+                                                              addCommentToProductPage={store.addCommentToProductPage.bind(store)}/>}/>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './../../App.module.css';
 
-const ProductPage = ({addCurrentMessageOnPage, addCommentOnPage, productPage: {product, comments, currentMessage}}) => {
+const ProductPage = ({addCurrentMessageToProductPage, addCommentToProductPage, productPage: {product, comments, currentMessage}}) => {
     // debugger
 
     let commentsArray = comments.map((item, id) => {
@@ -11,11 +11,11 @@ const ProductPage = ({addCurrentMessageOnPage, addCommentOnPage, productPage: {p
     });
 
     let onTextareaValueChange = (e) => {
-        addCurrentMessageOnPage(e.currentTarget.value);
+        addCurrentMessageToProductPage(e.currentTarget.value);
     };
 
     let onAddCommentButtonClick = () => {
-        addCommentOnPage(currentMessage);
+        addCommentToProductPage(currentMessage);
     };
 
     return <div>
