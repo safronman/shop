@@ -1,4 +1,4 @@
-let store = {
+let handleStore = {
     _state: {
         homePage: {
             banner: {
@@ -83,6 +83,7 @@ let store = {
         this._state.productPage.currentMessage = message;
         this._callback();
     },
+
     addCommentToProductPage(message) {
         this._state.productPage.comments.push(message);
         this._state.productPage.currentMessage = "";
@@ -92,6 +93,7 @@ let store = {
         this._state.catalogPage.currentProduct.img = img;
         this._callback();
     },
+
     addCurrentTitleOnCatalogPage(title) {
         this._state.catalogPage.currentProduct.title = title;
         this._callback();
@@ -115,4 +117,4 @@ let store = {
     }
 };
 
-export default store;
+export default handleStore;

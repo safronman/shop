@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './../../App.module.css';
+import {addCommentActionCreator, addCurrentCommentActionCreator} from "../../Redux/productPageReducer";
 
-const ProductPage = ({addCurrentMessageToProductPage, addCommentToProductPage, productPage: {product, comments, currentMessage}}) => {
+const ProductPage = ({store, productPage: {product, comments, currentMessage}}) => {
     // debugger
 
     let commentsArray = comments.map((item, id) => {
@@ -11,11 +12,12 @@ const ProductPage = ({addCurrentMessageToProductPage, addCommentToProductPage, p
     });
 
     let onTextareaValueChange = (e) => {
-        addCurrentMessageToProductPage(e.currentTarget.value);
+        // debugger
+        store.dispatch(addCurrentCommentActionCreator(e.currentTarget.value))
     };
 
     let onAddCommentButtonClick = () => {
-        addCommentToProductPage(currentMessage);
+        store.dispatch(addCommentActionCreator(currentMessage))
     };
 
     return <div>
@@ -41,7 +43,7 @@ const ProductPage = ({addCurrentMessageToProductPage, addCommentToProductPage, p
             <div> {commentsArray} </div>
         </div>
         <div>
-            <textarea onChange={onTextareaValueChange} value={currentMessage} placeholder="add text"></textarea>
+            <textarea onChange={onTextareaValueChange} value={currentMessage} placeholder="add text"/>
             <br/>
             <button onClick={onAddCommentButtonClick}>Add</button>
         </div>

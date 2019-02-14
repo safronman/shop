@@ -4,21 +4,32 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
-import store from "./Redux/store";
+import {combineReducers, createStore} from "redux";
+import productPageReducer from "./Redux/productPageReducer";
+import homePageReducer from "./Redux/homePageReducer";
+import catalogPageReducer from "./Redux/catalogPageReducer";
 
-let renderPage = () => {
+let combineReducer = combineReducers({
+    productPage: productPageReducer,
+    homePage: homePageReducer,
+    catalogPage: catalogPageReducer
+});
+
+let store = createStore(combineReducer);
+
+let renderPage = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={store.getState()}
-                 store={store}/>
+            <App state={state} store={store}/>
         </BrowserRouter>,
         document.getElementById('root'));
 };
 
-renderPage();
+renderPage(store.getState());
 
 store.subscribe(() => {
-    renderPage();
+    let state = store.getState();
+    renderPage(state);
 });
 
 // If you want your app to work offline and load faster, you can change

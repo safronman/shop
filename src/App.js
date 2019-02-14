@@ -6,7 +6,7 @@ import CatalogPage from "./ui/CatalogPage/CatalogPage";
 import {NavLink, Route} from "react-router-dom";
 
 
-const App = ({store, state: {homePage, catalogPage, productPage}}) => {
+const App = ({state: {homePage, catalogPage, productPage}, store}) => {
     // debugger
     return (
         <div className={styles.App}>
@@ -24,15 +24,8 @@ const App = ({store, state: {homePage, catalogPage, productPage}}) => {
             </div>
 
             <Route exact path='/' render={() => <HomePage homePage={homePage}/>}/>
-            <Route path='/catalog' render={() => <CatalogPage catalogPage={catalogPage}
-                                                              addCurrentTitleOnCatalogPage={store.addCurrentTitleOnCatalogPage.bind(store)}
-                                                              addCurrentImgOnCatalogPage={store.addCurrentImgOnCatalogPage.bind(store)}
-                                                              addCurrentDescOnCatalogPage={store.addCurrentDescOnCatalogPage.bind(store)}
-                                                              addProductOnCatalogPage={store.addProductOnCatalogPage.bind(store)}/>}/>
-
-            <Route path='/product' render={() => <ProductPage productPage={productPage}
-                                                              addCurrentMessageToProductPage={store.addCurrentMessageToProductPage.bind(store)}
-                                                              addCommentToProductPage={store.addCommentToProductPage.bind(store)}/>}/>
+            <Route path='/catalog' render={() => <CatalogPage catalogPage={catalogPage} store={store}/>}/>
+            <Route path='/product' render={() => <ProductPage productPage={productPage} store={store}/>}/>
         </div>
     );
 };

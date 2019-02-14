@@ -1,23 +1,28 @@
 import React from 'react';
 import styles from './Catalog.module.css';
 import {NavLink} from "react-router-dom";
+import {
+    addCurrentDescActionCreator,
+    addCurrentImgActionCreator,
+    addCurrentTitleActionCreator, addProductActionCreator
+} from "../../Redux/catalogPageReducer";
 
-const CatalogPage = ({catalogPage: {products, currentProduct}, addCurrentTitleOnCatalogPage, addCurrentImgOnCatalogPage, addCurrentDescOnCatalogPage, addProductOnCatalogPage}) => {
+const CatalogPage = ({catalogPage: {products, currentProduct}, store}) => {
     // debugger
     let addCurrentTitleInProduct = (e) => {
-        addCurrentTitleOnCatalogPage(e.currentTarget.value);
+        store.dispatch(addCurrentTitleActionCreator(e.currentTarget.value))
     };
 
     let addCurrentImgInProduct = (e) => {
-        addCurrentImgOnCatalogPage(e.currentTarget.value);
+        store.dispatch(addCurrentImgActionCreator(e.currentTarget.value))
     };
 
     let addCurrentDescInProduct = (e) => {
-        addCurrentDescOnCatalogPage(e.currentTarget.value);
+        store.dispatch(addCurrentDescActionCreator(e.currentTarget.value))
     };
 
     let addProduct = () => {
-        addProductOnCatalogPage(currentProduct.img, currentProduct.title, currentProduct.shortDescription);
+        store.dispatch(addProductActionCreator(currentProduct.img, currentProduct.title, currentProduct.shortDescription))
     };
 
     return (
@@ -58,7 +63,7 @@ const CatalogPage = ({catalogPage: {products, currentProduct}, addCurrentTitleOn
                 <textarea className={styles.textarea}
                           placeholder="Enter short description"
                           onChange={addCurrentDescInProduct}
-                          value={currentProduct.shortDescription}></textarea>
+                          value={currentProduct.shortDescription}/>
                 <button className={styles.btn} onClick={addProduct}>Add phone</button>
             </div>
         </div>
