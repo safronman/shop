@@ -17,6 +17,11 @@ let combineReducer = combineReducers({
 
 let store = createStore(combineReducer);
 
+store.subscribe(() => {
+    let state = store.getState();
+    renderPage(state);
+});
+
 let renderPage = (state) => {
     ReactDOM.render(
         <BrowserRouter>
@@ -26,11 +31,6 @@ let renderPage = (state) => {
 };
 
 renderPage(store.getState());
-
-store.subscribe(() => {
-    let state = store.getState();
-    renderPage(state);
-});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

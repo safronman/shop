@@ -12,7 +12,6 @@ const ProductPage = ({store, productPage: {product, comments, currentMessage}}) 
     });
 
     let onTextareaValueChange = (e) => {
-        // debugger
         store.dispatch(addCurrentCommentActionCreator(e.currentTarget.value))
     };
 
