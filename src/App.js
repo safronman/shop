@@ -1,13 +1,16 @@
 import React from 'react';
 import styles from './App.module.css';
-import ProductPage from "./ui/ProductPage/ProductPage";
-import HomePage from "./ui/HomePage/HomePage";
-import CatalogPage from "./ui/CatalogPage/CatalogPage";
 import {NavLink, Route} from "react-router-dom";
+import ProductPageContainer from "./ui/ProductPage/ProductPageContainer";
+import HomePageContainer from "./ui/HomePage/HomePageContainer";
+import CatalogPageContainer from "./ui/CatalogPage/CatalogPageContainer";
 
 
-const App = ({state: {homePage, catalogPage, productPage}, store}) => {
+const App = () => {
+
+    // {state: {homePage, catalogPage, productPage}, store}
     // debugger
+
     return (
         <div className={styles.App}>
             <div>
@@ -23,9 +26,9 @@ const App = ({state: {homePage, catalogPage, productPage}, store}) => {
                 </div>
             </div>
 
-            <Route exact path='/' render={() => <HomePage homePage={homePage}/>}/>
-            <Route path='/catalog' render={() => <CatalogPage catalogPage={catalogPage} store={store}/>}/>
-            <Route path='/product' render={() => <ProductPage productPage={productPage} store={store}/>}/>
+            <Route exact path='/' render={() => <HomePageContainer/>}/>
+            <Route path='/catalog' render={() => <CatalogPageContainer/>}/>
+            <Route path='/product' render={() => <ProductPageContainer/>}/>
         </div>
     );
 };

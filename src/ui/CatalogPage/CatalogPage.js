@@ -1,28 +1,23 @@
 import React from 'react';
 import styles from './Catalog.module.css';
 import {NavLink} from "react-router-dom";
-import {
-    addCurrentDescActionCreator,
-    addCurrentImgActionCreator,
-    addCurrentTitleActionCreator, addProductActionCreator
-} from "../../Redux/catalogPageReducer";
 
-const CatalogPage = ({catalogPage: {products, currentProduct}, store}) => {
+const CatalogPage = ({catalogPage: {products, currentProduct}, addCurrentTitle, addCurrentImg, addCurrentDesc, addProduct}) => {
     // debugger
     let addCurrentTitleInProduct = (e) => {
-        store.dispatch(addCurrentTitleActionCreator(e.currentTarget.value))
+        addCurrentTitle(e.currentTarget.value);
     };
 
     let addCurrentImgInProduct = (e) => {
-        store.dispatch(addCurrentImgActionCreator(e.currentTarget.value))
+        addCurrentImg(e.currentTarget.value);
     };
 
     let addCurrentDescInProduct = (e) => {
-        store.dispatch(addCurrentDescActionCreator(e.currentTarget.value))
+        addCurrentDesc(e.currentTarget.value);
     };
 
-    let addProduct = () => {
-        store.dispatch(addProductActionCreator(currentProduct.img, currentProduct.title, currentProduct.shortDescription))
+    let addNewProduct = () => {
+        addProduct(currentProduct.img, currentProduct.title, currentProduct.shortDescription);
     };
 
     return (
@@ -30,11 +25,11 @@ const CatalogPage = ({catalogPage: {products, currentProduct}, store}) => {
             <h1>Каталог</h1>
             <div className={styles.products}>
                 {
-                    products.map(p => <div className={styles.product}>
+                    products.map(p => <div key={p.id} className={styles.product} >
 
                         <div>
                             <NavLink to='/product'>
-                                <img src={p.img}/>
+                                <img src={p.img} alt='alt'/>
                             </NavLink>
                         </div>
                         <div>
@@ -64,7 +59,7 @@ const CatalogPage = ({catalogPage: {products, currentProduct}, store}) => {
                           placeholder="Enter short description"
                           onChange={addCurrentDescInProduct}
                           value={currentProduct.shortDescription}/>
-                <button className={styles.btn} onClick={addProduct}>Add phone</button>
+                <button className={styles.btn} onClick={addNewProduct}>Add phone</button>
             </div>
         </div>
     )

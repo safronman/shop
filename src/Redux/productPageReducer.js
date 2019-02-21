@@ -18,14 +18,24 @@ let initialState = {
 const productPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CURRENT_COMMENT:
-            // debugger
-            state.currentMessage = action.message;
-            return state;
+            // let newState = {...state};
+            // newState.currentMessage = action.message;
+            // return newState;
+            return {
+                ...state,
+                currentMessage: action.message
+            };
 
         case ADD_COMMENT:
-            state.comments.push(action.message);
-            state.currentMessage = "";
-            return state;
+            // let newState1 = {...state};
+            // newState1.comments.push(action.message);
+            // newState1.currentMessage = "";
+            // return newState1;
+            return {
+                ...state,
+                comments: [...state.comments, action.message],
+                currentMessage: ""
+            };
 
         default:
             return state;

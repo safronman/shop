@@ -8,6 +8,7 @@ import {combineReducers, createStore} from "redux";
 import productPageReducer from "./Redux/productPageReducer";
 import homePageReducer from "./Redux/homePageReducer";
 import catalogPageReducer from "./Redux/catalogPageReducer";
+import {Provider} from "react-redux";
 
 let combineReducer = combineReducers({
     productPage: productPageReducer,
@@ -17,16 +18,13 @@ let combineReducer = combineReducers({
 
 let store = createStore(combineReducer);
 
-store.subscribe(() => {
-    let state = store.getState();
-    renderPage(state);
-});
-
-let renderPage = (state) => {
+let renderPage = () => {
     ReactDOM.render(
-        <BrowserRouter>
-            <App state={state} store={store}/>
-        </BrowserRouter>,
+        <Provider store={store}>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </Provider>,
         document.getElementById('root'));
 };
 

@@ -42,29 +42,66 @@ let initialState = {
 const catalogPageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CURRENT_TITLE:
-            state.currentProduct.title = action.title;
-            return state;
+            // state.currentProduct.title = action.title;
+            // return state;
+            return {
+                ...state,
+                currentProduct: {
+                    ...state.currentProduct,
+                    title: action.title
+                }
+            };
 
         case ADD_CURRENT_IMG:
-            state.currentProduct.img = action.img;
-            return state;
+            // state.currentProduct.img = action.img;
+            // return state;
+            return {
+                ...state,
+                currentProduct: {
+                    ...state.currentProduct,
+                    img: action.img
+                }
+            };
 
         case ADD_CURRENT_DESC:
-            state.currentProduct.shortDescription = action.text;
-            return state;
+            // state.currentProduct.shortDescription = action.text;
+            // return state;
+            return {
+                ...state,
+                currentProduct: {
+                    ...state.currentProduct,
+                    shortDescription: action.text
+                }
+            };
 
         case ADD_PRODUCT:
-            let newProduct = {
-                id: 5,
-                img: action.img,
-                title: action.title,
-                shortDescription: action.desc
+            // let newProduct = {
+            //     id: 5,
+            //     img: action.img,
+            //     title: action.title,
+            //     shortDescription: action.desc
+            // };
+            // state.products.push(newProduct);
+            // state.currentProduct.title = "";
+            // state.currentProduct.shortDescription = "";
+            // state.currentProduct.img = "";
+            // return state;
+
+            return {
+                ...state,
+                products: [...state.products, {
+                    id: 5,
+                    img: action.img,
+                    title: action.title,
+                    shortDescription: action.desc
+                }],
+                currentProduct: {
+                    ...state.currentProduct,
+                    img: '',
+                    title: '',
+                    shortDescription: ''
+                }
             };
-            state.products.push(newProduct);
-            state.currentProduct.title = "";
-            state.currentProduct.shortDescription = "";
-            state.currentProduct.img = "";
-            return state;
 
         default:
             return state;

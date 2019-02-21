@@ -9,16 +9,17 @@ const HomePage = ({homePage: {banner, popularProducts}}) => {
         <div className={""}>
             <div>
                 <img className={styles.banner}
-                     src={banner.img}/>
+                     src={banner.img}
+                     alt=''/>
             </div>
             <div>
                 <h2>Популярные товары</h2>
                 <div className={styles.popularBlock}>
                     {
-                        popularProducts.map(p => <div>
+                        popularProducts.map(p => <div key={p.id}>
                             <div>
                                 <NavLink to='/product'>
-                                    <img src={p.img}/>
+                                    <img src={p.img} alt='alt'/>
                                 </NavLink>
                             </div>
                             <div>
